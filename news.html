@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الأخبار الاردنية</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- تضمين خط "Cairo" من Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    // متغيرات عالمية
+    var newsArray = [];
+    var currentIndex = 0;
+    var autoCycleInterval;    // للتناوب التلقائي بين الأخبار
+    var refreshFeedInterval;  // لإعادة جلب الأخبار بشكل دوري
+
+    // قائمة عناوين RSS لعشر مواقع إخبارية (بما في ذلك موقع الوكيل)
+    var feeds = [
+      'https://alwakeelnews.com/rss',          // الوكيل للأخبار
+      'https://royanews.tv/rss',                // رويان للأخبار
+      ,      // عمون للأخبار
+      'https://petra.gov.jo/rss',                // بيترا (وكالة الأنباء الأردنية)
+      'https://www.addustour.com/rss',           // الدستور
+   ,           // عمان نيوز
+                   // جوردان تايمز
+      'https://www.alghad.com/rss',              // الغد
+
+        // الوطن
+                  // جوردان نيوز (مثال آخر)
+    ];
+
+    // دالة لجلب الأخبار من جميع المصادر
+    function fetchNews(){
+      // إعادة تعيين المصفوفة والمُؤشر
+      newsArray = [];
+      currentIndex = 0;
+      var completedFeeds = 0;
+      var totalFeeds = feeds.length;
+
+      feeds.forEach(function(feedUrl){
+        $.ajax({
+          url: 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feedUrl),
+          method: 'GET',
+          success: function(response){
+            // إذا كانت هناك عناصر، نقوم بإضافتها إلى المصفوفة
+            if(response.items && response.items.length > 0) {
+              response.items.forEach(function(item){
+                var imageUrl = 'placeholder.jpg'; // الصورة الافتراضية
+                if(item.enclosure && item.enclosure.link){
+                  imageUrl = item.enclosure.link;
+                } else if(item.thumbnail){
+                  imageUrl = item.thumbnail;
+                } else {
+                  // محاولة استخراج الصورة من الوصف باستخدام تعبير منتظم
+                  var imgRegex = /<img.*?src=["'](.*?)["']/;
+                  var match = imgRegex.exec(item.description);
+                  if(match && match[1]){
+                    imageUrl = match[1];
+                  }
+                }
+                // إضافة الخبر إلى المصفوفة مع تاريخ النشر (إذا وُجد)
+                newsArray.push({
+                  title: item.title,
+                  link: item.link,
+                  description: item.description,
+                  image: imageUrl,
+                  pubDate: item.pubDate || ''
+                });
+              });
+            }
+            completedFeeds++;
+            // إذا تم جلب الأخبار من جميع المصادر، نقوم بترتيب الأخبار حسب تاريخ النشر (اختياري)
+            if(completedFeeds === totalFeeds) {
+              // في حال توفر تواريخ النشر، يمكن ترتيب الأخبار بحيث يكون الأحدث أولاً
+              newsArray.sort(function(a, b){
+                return new Date(b.pubDate) - new Date(a.pubDate);
+              });
+              displayNews();
+            }
+          },
+          error: function(){
+            console.error("فشل تحميل الأخبار من: " + feedUrl);
+            completedFeeds++;
+            if(completedFeeds === totalFeeds) {
+              displayNews();
+            }
+          }
+        });
+      });
+    }
+
+    // دالة لعرض الخبر الحالي
+    function displayNews(){
+      if(newsArray.length === 0) return;
+      var currentNews = newsArray[currentIndex];
+      // التحقق من تحميل الصورة قبل العرض
+      var img = new Image();
+      img.src = currentNews.image;
+      img.onload = function(){
+        $('#newsImage').attr('src', currentNews.image);
+      };
+      img.onerror = function(){
+        $('#newsImage').attr('src', 'placeholder.jpg');
+      };
+      $('#newsTitle').text(currentNews.title);
+      $('#newsDesc').html(currentNews.description);
+      $('#newsLink').attr('href', currentNews.link);
+    }
+
+    // دالة للانتقال للخبر التالي
+    function nextNews(){
+      if(newsArray.length === 0) return;
+      currentIndex = (currentIndex + 1) % newsArray.length;
+      displayNews();
+    }
+
+    // إعداد التناوب التلقائي وإعادة تحديث الأخبار
+    $(document).ready(function(){
+      // جلب الأخبار عند بدء التشغيل
+      fetchNews();
+
+      // تناوب تلقائي كل 10 ثوانٍ
+      autoCycleInterval = setInterval(nextNews, 10000);
+
+      // إعادة تحديث الأخبار كل دقيقة لضمان تنوع المحتوى
+      refreshFeedInterval = setInterval(fetchNews, 60000);
+
+      // التعامل مع أزرار التنقل اليدوية
+      $('#prevNews').click(function(){
+        if(newsArray.length === 0) return;
+        currentIndex = (currentIndex - 1 + newsArray.length) % newsArray.length;
+        displayNews();
+      });
+      $('#nextNews').click(function(){
+        if(newsArray.length === 0) return;
+        nextNews();
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- رأس الموقع -->
+  <header>
+    <h1>الأخبار الاردنية</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="about.html">عن الآثار</a></li>
+        <li><a href="sites.html">المواقع الأثرية</a></li>
+        <li><a href="gallery.html">معرض الصور</a></li>
+        <li><a href="Directions.html">الاتجاهات</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- حاوية الأخبار -->
+  <div class="news-container">
+    <div class="news-box">
+      <!-- تأكد من وجود ملف placeholder.jpg في نفس المجلد -->
+      <img id="newsImage" src="placeholder.jpg" alt="صورة الخبر">
+      <h3 id="newsTitle">عنوان الخبر</h3>
+      <p id="newsDesc">وصف الخبر</p>
+      <a id="newsLink" href="#">اقرأ المزيد</a>
+    </div>
+    <div class="news-controls">
+      <button id="prevNews">السابق</button>
+      <button id="nextNews">التالي</button>
+    </div>
+  </div>
+
+  <!-- تذييل الموقع -->
+  <footer>
+    <p>© 2025 الأخبار الاردنية - جميع الحقوق محفوظة.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الاتجاهات - الآثار الأردنية</title>
+  <!-- تضمين خط Cairo -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <!-- ربط ملف التنسيقات الخارجي -->
+  <link rel="stylesheet" href="style.css">
+  <!-- تنسيقات إضافية خاصة بصفحة الاتجاهات -->
+  <style>
+    /* تنسيق خانة البحث */
+    .search-container {
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: center;
+    }
+    .search-container input {
+      width: 80%;
+      padding: 10px;
+      font-size: 1.1em;
+      border: 2px solid var(--secondary-blue, #4a90e2);
+      border-radius: 5px;
+    }
+
+    /* تنسيق روابط الاتجاهات (الأزرار) */
+    .direction-link {
+      display: block;
+      text-align: center;
+      margin: 10px auto;
+      padding: 10px;
+      background-color: var(--secondary-blue, #4a90e2);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      max-width: 300px;
+      transition: background-color 0.3s ease;
+    }
+    .direction-link:hover {
+      background-color: #357ABD;
+    }
+
+    /* تنسيق المواقع */
+    .site-item {
+      display: inline-block;
+      vertical-align: top;
+      margin: 10px;
+      width: calc(25% - 20px);
+      box-sizing: border-box;
+    }
+    .site-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      display: block;
+    }
+    .site-item p {
+      margin: 5px 0 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- رأس الموقع -->
+  <header>
+    <h1>الآثار الأردنية</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="about.html">عن الآثار</a></li>
+        <li><a href="sites.html">المواقع الأثرية</a></li>
+        <li><a href="gallery.html">معرض الصور</a></li>
+        <li><a href="Directions.html" class="active">الاتجاهات</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- قسم Hero لصفحة الاتجاهات -->
+  <section class="directions-hero">
+    <div class="hero-content">
+      <h2>اكتشف الطريق إلى معالمنا السياحية</h2>
+      <p>اضغط على الموقع المطلوب لتحصل على الاتجاهات من موقعك الحالي إليه.</p>
+    </div>
+  </section>
+  
+  <!-- خانة البحث عن المواقع -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="ابحث عن موقع أثري..." />
+  </div>
+  
+  <!-- قسم عرض المواقع الأثرية أفقيًا -->
+  <section class="horizontal-sites">
+    <h2>المواقع الأثرية في الأردن</h2>
+    <div class="sites-container" id="sitesContainer">
+      <!-- المواقع الأساسية -->
+      <!-- 1. أم قيس (جدارا) -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="32.6532" data-lng="35.6868" data-name="أم قيس (جدارا)">
+          <img src="ام قيس.jpg" alt="أم قيس (جدارا)">
+          <p>أم قيس (جدارا)</p>
+        </a>
+      </div>
+      <!-- 2. البتراء -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="30.3239" data-lng="35.4824" data-name="البتراء">
+          <img src="البتراء.jpg" alt="البتراء">
+          <p>البتراء</p>
+        </a>
+      </div>
+      <!-- 3. مدينة جرش الأثرية -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="32.2804" data-lng="35.8993" data-name="مدينة جرش الأثرية">
+          <img src="قلعة جرش.jpg" alt="مدينة جرش الأثرية">
+          <p>مدينة جرش الأثرية</p>
+        </a>
+      </div>
+      <!-- 4. مدينة مادبا -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="31.7170" data-lng="35.7939" data-name="مدينة مادبا">
+          <img src="مدينة مادبا.jpg" alt="مدينة مادبا">
+          <p>مدينة مادبا</p>
+        </a>
+      </div>
+      <!-- 5. مدينة الكرك -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="31.1800" data-lng="35.7047" data-name="مدينة الكرك">
+          <img src="قلعة الكرك.jpg" alt="مدينة الكرك">
+          <p>مدينة الكرك</p>
+        </a>
+      </div>
+      <!-- 6. قلعة عجلون (قلعة الرَّبض) -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="32.3264" data-lng="35.7272" data-name="قلعة عجلون (قلعة الرَّبض)">
+          <img src="قلعة عجلون.jpg" alt="قلعة عجلون (قلعة الرَّبض)">
+          <p>قلعة عجلون (قلعة الرَّبض)</p>
+        </a>
+      </div>
+      <!-- 7. محافظة البلقاء -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="32.0356" data-lng="35.7272" data-name="محافظة البلقاء">
+          <img src="البلقاء.jpg" alt="محافظة البلقاء">
+          <p>محافظة البلقاء</p>
+        </a>
+      </div>
+      <!-- 8. مواقع مادبا الأثرية -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="31.7167" data-lng="35.8000" data-name="مواقع مادبا الأثرية">
+          <img src="مادبا.jpg" alt="مواقع مادبا الأثرية">
+          <p>مواقع مادبا الأثرية</p>
+        </a>
+      </div>
+      <!-- 9. وادي رم -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="29.5766" data-lng="35.4195" data-name="وادي رم">
+          <img src="وادي رم.jpg" alt="وادي رم">
+          <p>وادي رم</p>
+        </a>
+      </div>
+      <!-- 10. جبل نيبو -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="31.7666" data-lng="35.7250" data-name="جبل نيبو">
+          <img src="جبل نيبو.jpg" alt="جبل نيبو">
+          <p>جبل نيبو</p>
+        </a>
+      </div>
+      <!-- 11. دير مار إلياس -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="32.2833" data-lng="35.7167" data-name="دير مار إلياس">
+          <img src="الياس.jpg" alt="دير مار إلياس">
+          <p>دير مار إلياس</p>
+        </a>
+      </div>
+      <!-- 12. قصر الحلابات -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="32.0833" data-lng="36.3667" data-name="قصر الحلابات">
+          <img src="قصر الحلابات.jpg" alt="قصر الحلابات">
+          <p>قصر الحلابات</p>
+        </a>
+      </div>
+      <!-- 13. قلعة الشوبك -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="30.5200" data-lng="35.5600" data-name="قلعة الشوبك">
+          <img src="قلعة الشوبك.jpg" alt="قلعة الشوبك">
+          <p>قلعة الشوبك</p>
+        </a>
+      </div>
+      <!-- 14. أطلال طبقة فحل (بيلا) -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="32.4333" data-lng="35.6167" data-name="أطلال طبقة فحل (بيلا)">
+          <img src="طبقة فحل.jpg" alt="أطلال طبقة فحل (بيلا)">
+          <p>أطلال طبقة فحل (بيلا)</p>
+        </a>
+      </div>
+      <!-- 15. معبد هرقل (جبل القلعة) -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="31.9534" data-lng="35.9349" data-name="معبد هرقل (جبل القلعة)">
+          <img src="جبل القلعه.jpg" alt="معبد هرقل (جبل القلعة)">
+          <p>معبد هرقل (جبل القلعة)</p>
+        </a>
+      </div>
+      <!-- 17. قصر عمرة -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="31.8014" data-lng="36.5761" data-name="قصر عمرة">
+          <img src="قصر عمره.jpg" alt="قصر عمرة">
+          <p>قصر عمرة</p>
+        </a>
+      </div>
+      <!-- باقي المواقع تبقى دون تغيير -->
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="32.0500" data-lng="35.8600" data-name="أم الرصاص">
+          <img src="قرية الرصاص.jpg" alt="أم الرصاص">
+          <p>أم الرصاص</p>
+        </a>
+      </div>
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="32.1000" data-lng="35.8800" data-name="قصر الخرنة">
+          <img src="الحرانه.jpg" alt="قصر الخرنة">
+          <p>قصر الخرنة</p>
+        </a>
+      </div>
+      <div class="site-item">
+        <a href="#" class="direction-link" data-lat="32.1400" data-lng="35.9400" data-name="متحف جرش الأثري">
+          <img src="متحف جرش.jpg" alt="متحف جرش الأثري">
+          <p>متحف جرش الأثري</p>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- تم إزالة قسم الخريطة -->
+
+  <!-- تذييل الموقع -->
+  <footer>
+    <p>&copy; 2025 الآثار الأردنية. جميع الحقوق محفوظة.</p>
+  </footer>
+  
+  <!-- سكريبت لتفعيل ميزة تحديد الموقع والتوجيه والبحث -->
+  <script>
+    // متغير لتخزين موقع المستخدم بعد الحصول عليه للمرة الأولى
+    let userLocation = null;
+    
+    // دالة للحصول على موقع المستخدم (تطلب مرة واحدة فقط)
+    function getUserLocation(callback) {
+      // إذا كان الموقع موجود بالفعل، نستخدمه مباشرة
+      if (userLocation !== null) {
+        callback(userLocation);
+        return;
+      }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            userLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            callback(userLocation);
+          },
+          error => {
+            alert("لم نتمكن من تحديد موقعك الحالي. سيتم عرض الاتجاهات بدون تحديد موقعك.");
+            callback(null);
+          }
+        );
+      } else {
+        alert("المتصفح لا يدعم تحديد الموقع.");
+        callback(null);
+      }
+    }
+
+    // وظيفة البحث: تصفية العناصر بناءً على النص المدخل
+    const searchInput = document.getElementById('searchInput');
+    const sitesContainer = document.getElementById('sitesContainer');
+    searchInput.addEventListener('input', function() {
+      const filter = this.value.toLowerCase();
+      const siteItems = sitesContainer.getElementsByClassName('site-item');
+      Array.from(siteItems).forEach(item => {
+        const name = item.querySelector('p').textContent.toLowerCase();
+        item.style.display = name.indexOf(filter) > -1 ? '' : 'none';
+      });
+    });
+
+    // عند النقر على أي رابط يحمل الفئة direction-link
+    document.querySelectorAll('.direction-link').forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        // الحصول على إحداثيات الوجهة من البيانات
+        const destLat = this.getAttribute('data-lat');
+        const destLng = this.getAttribute('data-lng');
+        const destName = this.getAttribute('data-name');
+        
+        // التحقق من توفر الإحداثيات قبل محاولة الحصول على الاتجاهات
+        if (!destLat || !destLng) {
+          alert("لا تتوفر إحداثيات محددة لهذا الموقع.");
+          return;
+        }
+        
+        // دالة لبناء رابط Google Maps مع الاتجاهات
+        const buildDirectionsUrl = (originLat, originLng, destLat, destLng) => {
+          return `https://www.google.com/maps/dir/?api=1&origin=${originLat},${originLng}&destination=${destLat},${destLng}&travelmode=driving`;
+        };
+
+        // الحصول على موقع المستخدم مرة واحدة فقط باستخدام الدالة getUserLocation
+        getUserLocation(location => {
+          if (location !== null) {
+            const directionsUrl = buildDirectionsUrl(location.lat, location.lng, destLat, destLng);
+            window.open(directionsUrl, '_blank');
+          } else {
+            // في حال عدم توفر الموقع
+            const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${destLat},${destLng}&travelmode=driving`;
+            window.open(directionsUrl, '_blank');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

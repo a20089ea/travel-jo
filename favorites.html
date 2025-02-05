@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>المواقع المفضلة - الآثار الأردنية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- رأس الموقع -->
+  <header>
+    <h1>الآثار الأردنية</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="about.html">عن الآثار</a></li>
+        <li><a href="sites.html">المواقع الأثرية</a></li>
+        <li><a href="gallery.html">معرض الصور</a></li>
+        <li><a href="Directions.html">الاتجاهات</a></li>
+        <li><a href="news.html">اخر الاخبار</a></li>
+        <li><a href="favorites.html">الاماكن المفضله</a></li>
+        <li><a href="profile.html"> حسابي </a></li>
+        <!-- قائمة حساب المستخدم -->
+        <li id="accountNav" style="display: block; position: relative;">
+          <a href="#">حسابي</a>
+          <ul class="dropdown-menu">
+            <li><a href="profile.html">الملف الشخصي</a></li>
+            <li><a href="favorites.html">المواقع المفضلة</a></li>
+            <li><a href="#" id="logoutBtn">تسجيل الخروج</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main>
+    <section class="content">
+      <h2>المواقع المفضلة</h2>
+      <p>هنا قائمة بالمواقع الأثرية التي قمت بحفظها:</p>
+      <ul class="favorites-list">
+        <li>
+          <h3>البتراء</h3>
+          <p>وصف مختصر لموقع البتراء.</p>
+          <a href="sites.html" class="button">عرض التفاصيل</a>
+        </li>
+        <li>
+          <h3>جرش</h3>
+          <p>وصف مختصر لموقع جرش.</p>
+          <a href="sites.html" class="button">عرض التفاصيل</a>
+        </li>
+        <!-- يمكن إضافة المزيد من المواقع -->
+      </ul>
+    </section>
+  </main>
+
+  <!-- تذييل الموقع -->
+  <footer>
+    <p>© 2025 الآثار الأردنية - جميع الحقوق محفوظة.</p>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="about.html">عن الآثار</a></li>
+        <li><a href="sites.html">المواقع الأثرية</a></li>
+        <li><a href="gallery.html">معرض الصور</a></li>
+        <li><a href="Directions.html">الاتجاهات</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <script>
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.setItem('loggedIn', 'false');
+      location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,875 @@
+/* إعداد متغيرات الألوان الرئيسية */
+:root {
+  --primary-blue: #004080;
+  --secondary-blue: #0073e6;
+  --light-blue: #e6f7ff;
+  --background: #f0f8ff;
+}
+
+/* إعادة تعيين الأنماط الأساسية */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--background);
+  color: #333;
+  direction: rtl;
+  text-align: right;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* رأس الموقع */
+header {
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  color: #fff;
+  padding: 20px 10px;
+  text-align: center;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+header h1 {
+  margin-bottom: 10px;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--light-blue);
+}
+
+/* المحتوى الرئيسي */
+main {
+  padding: 40px 20px;
+  background: #fff;
+}
+
+/* قسم الصفحة الرئيسية (Hero) مع تأثيرات ثلاثية الأبعاد */
+.hero {
+  position: relative;
+  background: url('141621.jpg') no-repeat center center/cover;
+  padding: 80px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+  perspective: 1200px;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 50, 0.5);
+  z-index: 0;
+}
+.hero .hero-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+  animation: fadeInUp 1.5s ease;
+  transform: translateZ(60px);
+}
+.hero .hero-content h2 {
+  font-size: 2.8em;
+  margin-bottom: 20px;
+}
+.hero .hero-content p {
+  font-size: 1.2em;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* حاوية العرض الثلاثي الأبعاد */
+#threeD-container {
+  width: 100%;
+  height: 500px;
+  margin: 40px auto;
+  border: 2px solid var(--primary-blue);
+  border-radius: 10px;
+  overflow: hidden;
+  transform: perspective(800px) rotateY(0deg);
+  transition: transform 0.6s ease;
+}
+#threeD-container:hover {
+  transform: perspective(800px) rotateY(5deg);
+}
+
+/* الأقسام المحتوية على المحتوى (About, Sites, Gallery, Contact) */
+.content {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: popIn 0.8s ease-out;
+}
+.content h2 {
+  margin-bottom: 20px;
+  color: var(--primary-blue);
+  font-size: 2em;
+  border-bottom: 2px solid var(--secondary-blue);
+  display: inline-block;
+  padding-bottom: 10px;
+}
+.content p {
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+/* تحسين عرض الصور داخل المحتوى */
+.content-image {
+  width: 100%;
+  margin: 20px 0;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.content-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* قائمة المواقع الأثرية (شبكة) */
+.sites-list {
+  list-style: none;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.sites-list li {
+  background: var(--background);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.sites-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+.sites-list li h3 {
+  margin-bottom: 10px;
+  color: var(--primary-blue);
+}
+.sites-list li img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+/* معرض الصور */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.gallery img {
+  width: calc(33.33% - 10px);
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  object-fit: cover;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* نموذج التواصل */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.contact-form label {
+  font-weight: bold;
+  color: var(--primary-blue);
+}
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 2px solid var(--secondary-blue);
+  border-radius: 5px;
+  font-size: 1em;
+}
+.contact-form button {
+  width: 200px;
+  padding: 12px;
+  background: var(--primary-blue);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  align-self: center;
+}
+.contact-form button:hover {
+  background: var(--secondary-blue);
+}
+
+/* معلومات الاتصال */
+.contact-info h3 {
+  color: var(--primary-blue);
+  margin-bottom: 10px;
+}
+.contact-info p {
+  margin-bottom: 5px;
+  font-size: 1em;
+}
+
+/* تذييل الموقع */
+footer {
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+  position: relative;
+  z-index: 1000;
+}
+
+/* تأثيرات الحركة */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* استجابة الأجهزة */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2em;
+  }
+  .hero .hero-content h2 {
+    font-size: 2em;
+  }
+  .hero .hero-content p {
+    font-size: 1em;
+  }
+  .sites-list {
+    grid-template-columns: 1fr;
+  }
+  .gallery img {
+    width: calc(50% - 10px);
+  }
+}
+@media (max-width: 480px) {
+  .gallery img {
+    width: 100%;
+  }
+}
+
+/* تنسيقات صفحة الاتجاهات */
+.directions-hero {
+  position: relative;
+  background: url('141621.jpg') no-repeat center center/cover;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  overflow: hidden;
+}
+.directions-hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 50, 0.6);
+  z-index: 0;
+}
+.directions-hero .hero-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+  transform: translateZ(40px);
+  animation: fadeInUp 1.5s ease;
+}
+.directions-hero .hero-content h2 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+.directions-hero .hero-content p {
+  font-size: 1.4em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* تنسيقات لخانة البحث */
+.search-container {
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+.search-container input {
+  width: 80%;
+  padding: 10px;
+  font-size: 1.1em;
+  border: 2px solid var(--secondary-blue);
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+.search-container input:focus {
+  border-color: var(--primary-blue);
+}
+
+/* تنسيق زر الاتجاهات (مطابق لباقي الأزرار) */
+.direction-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--primary-blue);
+  color: #fff;
+  text-decoration: none;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.direction-link:hover {
+  background: var(--secondary-blue);
+}
+
+/* قسم الخريطة التفاعلية */
+.map-container {
+  position: relative;
+  margin: 40px auto;
+  max-width: 1000px;
+  border: 2px solid var(--primary-blue);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.6s ease;
+}
+.map-container:hover {
+  transform: perspective(800px) rotateY(1deg);
+}
+.map-container iframe {
+  width: 100%;
+  height: 500px;
+  border: none;
+}
+
+/* قسم الاتجاهات المتقدمة (إن وجد) */
+.advanced-directions {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  animation: popIn 1s ease-out;
+}
+.advanced-directions h2 {
+  text-align: center;
+  color: var(--primary-blue);
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+.advanced-directions ul {
+  list-style: none;
+  padding: 0;
+}
+.advanced-directions li {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: var(--background);
+  border-radius: 8px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.advanced-directions li:hover {
+  transform: translateX(10px);
+  background: var(--light-blue);
+}
+.advanced-directions li h3 {
+  margin-bottom: 10px;
+  font-size: 1.8em;
+  color: var(--primary-blue);
+}
+.advanced-directions a {
+  text-decoration: none;
+  color: var(--secondary-blue);
+  font-weight: bold;
+  font-size: 1.2em;
+  transition: color 0.3s ease;
+}
+.advanced-directions a:hover {
+  color: var(--primary-blue);
+}
+
+/* قسم عرض المواقع الأثرية أفقيًا (إذا كنت تستخدمه) */
+.horizontal-sites {
+  margin: 40px auto;
+  padding: 20px;
+}
+.horizontal-sites h2 {
+  text-align: center;
+  color: var(--primary-blue);
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+.sites-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
+}
+.site-item {
+  flex: 0 0 auto;
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 10px;
+}
+
+/* مساحة ثابتة للصورة فوق كل موقع */
+.site-image {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background: #ddd;
+  margin-bottom: 10px;
+}
+.site-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.site-item p {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: var(--primary-blue);
+}
+
+/* زر افتراضي للأزرار العامة */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--primary-blue);
+  color: #fff;
+  text-decoration: none;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.button:hover {
+  background: var(--secondary-blue);
+}
+
+/* ===================================================== */
+/* قسم عرض المواقع الأثرية في حاوية كبيرة لتعزيز الجمالية */
+/* ===================================================== */
+.sites-gallery-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.sites-gallery-container h2 {
+  text-align: center;
+  color: var(--primary-blue);
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+.sites-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* تنسيقات نافذة تسجيل الدخول (إذا استخدمت) */
+#loginModal {
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loginModal .modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  animation: popIn 0.5s ease-out;
+}
+#loginModal h2 {
+  margin-bottom: 20px;
+  color: var(--primary-blue);
+}
+#loginModal p {
+  margin-bottom: 30px;
+  font-size: 1.1em;
+}
+#loginModal .modal-buttons a {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 10px 20px;
+  background: var(--primary-blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+#loginModal .modal-buttons a:hover {
+  background: var(--secondary-blue);
+}
+
+/* تنسيقات إضافية للأخبار (نمط قديم) */
+.news-container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+.news-box {
+  text-align: center;
+  padding: 15px;
+}
+.news-box img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.news-box h3 {
+  font-size: 22px;
+  color: #333;
+  margin-top: 10px;
+}
+.news-box p {
+  font-size: 16px;
+  color: #666;
+  margin: 10px 0;
+}
+.news-box a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.news-box a:hover {
+  background-color: #0056b3;
+}
+.news-controls {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.news-controls button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#prevNews {
+  background-color: #28a745;
+  color: white;
+}
+#nextNews {
+  background-color: #dc3545;
+  color: white;
+}
+#prevNews:hover {
+  background-color: #218838;
+}
+#nextNews:hover {
+  background-color: #c82333;
+}
+#loginModal {
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loginModal .modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+#loginModal h2 {
+  margin-bottom: 20px;
+  color: var(--primary-blue);
+}
+#loginModal p {
+  margin-bottom: 30px;
+  font-size: 1.1em;
+}
+#loginModal .modal-buttons a {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 10px 20px;
+  background: var(--primary-blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+#loginModal .modal-buttons a:hover {
+  background: var(--secondary-blue);
+}
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #004080;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 2px solid #0073e6;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #004080;
+  box-shadow: 0 0 5px rgba(0, 115, 230, 0.5);
+}
+
+.input-group i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #004080;
+  cursor: pointer;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background: #004080;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-container button:hover {
+  background: #0073e6;
+}
+
+.login-container p {
+  margin-top: 10px;
+}
+
+.login-container p a {
+  color: #0073e6;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-container p a:hover {
+  text-decoration: underline;
+}
+    /* تنسيق نموذج إنشاء الحساب */
+    .register-container {
+      max-width: 450px;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .register-container h2 {
+      margin-bottom: 20px;
+      color: #004080;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 15px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: 2px solid #0073e6;
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .input-group input:focus {
+      border-color: #004080;
+      box-shadow: 0 0 5px rgba(0, 115, 230, 0.5);
+    }
+
+    .input-group i {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #004080;
+      cursor: pointer;
+    }
+
+    .register-container button {
+      width: 100%;
+      padding: 12px;
+      background: #004080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .register-container button:hover {
+      background: #0073e6;
+    }
+
+    .register-container p {
+      margin-top: 10px;
+    }
+
+    .register-container p a {
+      color: #0073e6;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .register-container p a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      display: none;
+      text-align: right;
+    }
+    /* تنسيق القسم الذي يحتوي على الفيديو */
+#video {
+  background-color: #f9f9f9; /* خلفية فاتحة */
+  padding: 40px 20px; /* حواف لتوفير بعض المساحة حول الفيديو */
+  text-align: center; /* محاذاة النص داخل القسم إلى المنتصف */
+  border-radius: 10px; /* حواف دائرية لتصميم أنيق */
+  margin-bottom: 40px; /* مسافة بين هذا القسم وبقية الأقسام */
+}
+
+#video h2 {
+  font-size: 2em; /* تكبير حجم العنوان */
+  margin-bottom: 20px; /* مسافة بين العنوان والفيديو */
+  color: #333; /* لون النص */
+  font-family: 'Cairo', sans-serif; /* خط من خط Cairo */
+}
+
+#video iframe {
+  max-width: 100%; /* جعل الفيديو يستجيب لأبعاد الشاشة */
+  height: 400px; /* تحديد ارتفاع الفيديو */
+  border: none; /* إزالة حدود الفيديو */
+  border-radius: 8px; /* حواف دائرية للفيديو */
+}
+
+/* التأكد من أن الفيديو لا يتجاوز العرض في الشاشات الصغيرة */
+@media (max-width: 768px) {
+  #video iframe {
+    height: 250px; /* تقليل الارتفاع في الشاشات الصغيرة */
+  }
+}
